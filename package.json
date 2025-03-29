@@ -1,0 +1,19 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "main": "index.js",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:api": "npm -w backend run start:dev",
+    "dev:app": "npm -w frontend run dev",
+    "dev": "docker-compose up --build",
+    "start:dev": "npm run dev:api & npm run dev:app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

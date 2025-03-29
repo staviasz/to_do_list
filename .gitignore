@@ -1,0 +1,70 @@
+# Arquivo .gitignore da raiz do projeto todo-list
+
+# Regras comuns para Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Regras específicas do Frontend (Next.js)
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/coverage/
+frontend/.vercel/
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# Regras específicas do Backend (NestJS)
+backend/api/dist/  # Assumindo que seu projeto NestJS está em backend/api
+backend/api/node_modules/
+backend/api/build/
+backend/api/logs
+backend/api/*.log
+backend/api/npm-debug.log*
+backend/api/pnpm-debug.log*
+backend/api/yarn-debug.log*
+backend/api/yarn-error.log*
+backend/api/lerna-debug.log*
+backend/api/.nyc_output
+backend/api/.idea
+backend/api/.project
+backend/api/.classpath
+backend/api/.c9/
+backend/api/*.launch
+backend/api/.settings/
+backend/api/*.sublime-workspace
+backend/api/.vscode/*
+!backend/api/.vscode/settings.json
+!backend/api/.vscode/tasks.json
+!backend/api/.vscode/launch.json
+!backend/api/.vscode/extensions.json
+backend/api/.env
+backend/api/.env.development.local
+backend/api/.env.test.local
+backend/api/.env.production.local
+backend/api/.env.local
+backend/api/.temp
+backend/api/.tmp
+backend/api/pids
+backend/api/*.pid
+backend/api/*.seed
+backend/api/*.pid.lock
+backend/api/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Regras gerais
+.DS_Store
+*.pem
+.env*
+.idea/
+.vscode/
+Thumbs.db
