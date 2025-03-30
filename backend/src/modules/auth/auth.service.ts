@@ -49,7 +49,7 @@ export class AuthService {
       throw new UnauthorizedException('Sessão Expirada');
     }
 
-    const session = await this.dbClient.session.findUnique({
+    const session = await this.dbClient.session.findUniqueOrThrow({
       where: {
         uniqueTokenRefreshToken: {
           token,
@@ -58,11 +58,7 @@ export class AuthService {
       },
     });
 
-    if (!session) {
-      throw new UnauthorizedException('Sessão Expirada');
-    }
-
-    await this.createSession({
+    return await this.createSession({
       ...payload,
       userId: session.user_id,
     });

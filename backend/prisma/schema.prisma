@@ -27,8 +27,9 @@ model user {
 
 model tasks {
   id        Int      @id @default(autoincrement())
-  title     String
+  description     String
   completed Boolean
+  dateOfCompletion DateTime @map("date_of_completion")
   user_id   Int
   user      user     @relation(fields: [user_id], references: [id])
 }

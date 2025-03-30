@@ -5,6 +5,6 @@ import { JWTAdapter } from './infra/jwt.adapter';
 @Global()
 @Module({
   providers: [AuthService, JWTAdapter],
-  exports: [AuthService],
+  exports: [AuthService, JWTAdapter],
 })
 export class AuthModule {}

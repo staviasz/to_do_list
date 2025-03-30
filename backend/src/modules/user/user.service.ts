@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../auth/auth.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto, LoginDto, RefreshSessionDto } from './dto/';
@@ -18,10 +14,8 @@ export class UserService {
 
   async create(input: CreateUserDto) {
     const { name, email, password } = input;
-    console.log('before hash', password);
 
     const hashPassword = (await this.hashService.hash(password)) || '';
-    console.log('after hash', hashPassword);
 
     const user = await this.dbClient.user.create({
       data: {
@@ -40,16 +34,11 @@ export class UserService {
   async login(input: LoginDto) {
     const { email, password } = input;
 
-    const user = await this.dbClient.user.findUnique({
+    const user = await this.dbClient.user.findUniqueOrThrow({
       where: {
         email,
       },
     });
-
-    if (!user) {
-      throw new NotFoundException('Usuário não encontrado');
-    }
-    console.log(user.password);
 
     const isPasswordValid = await this.hashService.compare(
       password,
