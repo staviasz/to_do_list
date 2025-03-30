@@ -1,4 +1,4 @@
-FROM node:21-alpine
+FROM node:20-alpine
 WORKDIR /app
 
 RUN wget -O /usr/local/bin/dockerize https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz \

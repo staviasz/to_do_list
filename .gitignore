@@ -68,3 +68,12 @@ backend/api/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .idea/
 .vscode/
 Thumbs.db
+.pnpm-store
+**/node_modules/**
+**/dist/**
+**/build/**
+**/coverage/**
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+**/.env
