@@ -15,7 +15,7 @@ export class UserService {
   async create(input: CreateUserDto) {
     const { name, email, password } = input;
 
-    const hashPassword = (await this.hashService.hash(password)) || '';
+    const hashPassword = await this.hashService.hash(password);
 
     const user = await this.dbClient.user.create({
       data: {

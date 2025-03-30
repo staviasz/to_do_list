@@ -31,7 +31,7 @@ model tasks {
   completed Boolean
   dateOfCompletion DateTime @map("date_of_completion")
   user_id   Int
-  user      user     @relation(fields: [user_id], references: [id])
+  user      user     @relation(fields: [user_id], references: [id],onDelete: Cascade)
 }
 
 model session {
@@ -40,7 +40,7 @@ model session {
   token     String
   refresh_token   String
 
-  user      user     @relation(fields: [user_id], references: [id])
+  user      user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([token, refresh_token],name: "uniqueTokenRefreshToken")
 }

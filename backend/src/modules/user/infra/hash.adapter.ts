@@ -5,7 +5,6 @@ import * as argon2 from 'argon2';
 export class HashAdapter {
   async hash(text: string): Promise<string> {
     const hash = await argon2.hash(text);
-    console.log(hash);
     return hash;
   }
 

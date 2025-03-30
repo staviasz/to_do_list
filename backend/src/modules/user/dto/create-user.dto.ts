@@ -1,3 +1,4 @@
+import { IsNotEmptyTrim } from '@/modules/tasks/dto/decorators/trim.decorator';
 import {
   IsEmail,
   IsString,
@@ -18,6 +19,9 @@ export class CreateUserDto {
   })
   @Matches(/^[a-zA-ZÀ-ÿ\s~-]+$/, {
     message: 'O nome deve conter apenas letras, espaços e hífen.',
+  })
+  @IsNotEmptyTrim({
+    message: 'O nome deve ser preenchido.',
   })
   name!: string;
 

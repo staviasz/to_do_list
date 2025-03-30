@@ -1,42 +1,30 @@
-import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
+import {
+  BadRequestException,
+  Catch,
+  ConflictException,
+  ExceptionFilter,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Response } from 'express';
 
 @Catch(Prisma.PrismaClientKnownRequestError)
 export class PrismaExceptions implements ExceptionFilter {
-  catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-
+  catch(exception: Prisma.PrismaClientKnownRequestError) {
     switch (exception.code) {
       case 'P2025': {
         const modelName = exception.meta?.modelName as string;
-        response.status(404).json({
-          statusCode: 404,
-          message: `${modelName} não encontrado`,
-        });
-        break;
+        throw new NotFoundException(`${modelName} não encontrado(a)`);
       }
       case 'P2023':
-        response.status(400).json({
-          statusCode: 400,
-          message: 'Id inválido',
-        });
-        break;
+        throw new BadRequestException('Id inválido');
       case 'P2002': {
         const targetSplit: string = exception.meta?.target as string;
-        response.status(409).json({
-          statusCode: 409,
-          message: `${targetSplit} já existe`,
-        });
-        break;
+        throw new ConflictException(`${targetSplit} ja existe`);
       }
       default: {
         const message = exception.meta?.cause ?? exception.message;
-        response.status(500).json({
-          statusCode: 500,
-          message,
-        });
+        throw new InternalServerErrorException(message);
       }
     }
   }
