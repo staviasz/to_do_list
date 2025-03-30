@@ -1,5 +1,6 @@
 import { IsString, Length, MaxLength, MinLength } from 'class-validator';
 import { IsValidFutureDate } from './decorators/date-is-valid.decorator';
+import { IsNotEmptyTrim } from './decorators/trim.decorator';
 
 export class CreateTaskDto {
   @IsString({
@@ -10,6 +11,9 @@ export class CreateTaskDto {
   })
   @MaxLength(255, {
     message: 'A descrição deve ter no máximo 255 caracteres.',
+  })
+  @IsNotEmptyTrim({
+    message: 'A descrição deve ser preenchido.',
   })
   description!: string;
 

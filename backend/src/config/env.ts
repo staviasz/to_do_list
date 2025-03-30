@@ -9,6 +9,9 @@ export const ENV_DATABASE = {
   user: process.env.POSTGRES_USER || 'postgres',
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.POSTGRES_DB || 'postgres',
+  databaseUrl:
+    process.env.DATABASE_URL ||
+    'postgres://postgres:postgres@localhost:5432/postgres',
 };
 
 export const ENV_SERVER = {

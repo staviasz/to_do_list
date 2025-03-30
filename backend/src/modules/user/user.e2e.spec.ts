@@ -1,3 +1,7 @@
+/*
+ * @jest-environment ./config/jest.environment.ts
+ */
+
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
