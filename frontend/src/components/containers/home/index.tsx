@@ -1,6 +1,7 @@
 "use client";
 
 import ListTasks from "@/components/containers/list-tasks";
+import { SessionProvider } from "@/components/context/session-context";
 import LoginForm from "@/components/forms/login";
 import RegisterForm from "@/components/forms/register-user";
 import Header from "@/components/header";
@@ -10,7 +11,7 @@ export default function HomeContainer() {
   const [showForm, setShowForm] = useState<"login" | "register" | null>(null);
 
   return (
-    <>
+    <SessionProvider>
       <Header onClick={() => setShowForm("login")} />
       <ListTasks />
       {showForm === "login" && (
@@ -25,6 +26,6 @@ export default function HomeContainer() {
           onClickRedirect={() => setShowForm("login")}
         />
       )}
-    </>
+    </SessionProvider>
   );
 }

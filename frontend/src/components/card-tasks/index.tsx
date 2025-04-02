@@ -12,7 +12,11 @@ export default function CardTasks({ onClick, task }: TaskProps) {
       <CardBody>
         <CardSubtitle>{task.dateOfCompletion}</CardSubtitle>
         <CardText>{task.description}</CardText>
-        <CardText>Motivacional</CardText>
+        <CardText
+          className={`fs-7 ${task.completed ? "text-success" : "text-danger"}`}
+        >
+          Completed
+        </CardText>
       </CardBody>
     </Card>
   );

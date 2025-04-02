@@ -1,4 +1,10 @@
-import { Form, Modal, ModalBody, ModalHeader } from "react-bootstrap";
+import {
+  Form,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+} from "react-bootstrap";
 import ContainerButtonsForm from "../containers/buttons-form";
 
 interface BaseFormProps {
@@ -10,6 +16,8 @@ interface BaseFormProps {
   onClickRedirect?: () => void;
   textBtnDanger?: string;
   textBtnSuccess?: string;
+  validate?: boolean;
+  messageErroApi?: string;
 }
 
 export default function BaseForm({
@@ -21,6 +29,8 @@ export default function BaseForm({
   textRedirect,
   textBtnDanger,
   textBtnSuccess,
+  validate = false,
+  messageErroApi,
 }: BaseFormProps) {
   return (
     <Modal show>
@@ -28,10 +38,12 @@ export default function BaseForm({
         <h1 className="fs-3 m-0">{title}</h1>
       </ModalHeader>
       <ModalBody>
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} noValidate validated={validate}>
           {children}
           <div
-            className={`d-flex align-items-center justify-content-end ${textRedirect && "justify-content-between"}`}
+            className={`d-flex align-items-center justify-content-end ${
+              textRedirect && "justify-content-between"
+            }`}
           >
             {textRedirect && (
               <p
@@ -49,6 +61,11 @@ export default function BaseForm({
           </div>
         </Form>
       </ModalBody>
+      {messageErroApi && (
+        <ModalFooter className="d-flex justify-content-start text-danger">
+          {messageErroApi}
+        </ModalFooter>
+      )}
     </Modal>
   );
 }

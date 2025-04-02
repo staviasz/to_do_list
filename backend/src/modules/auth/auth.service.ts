@@ -19,7 +19,7 @@ export class AuthService {
   ) {}
 
   async createSession(payload: CreateSessionProps) {
-    const token = this.jwtService.sign({ payload, expiresIn: '30M' });
+    const token = this.jwtService.sign({ payload, expiresIn: '1M' });
     const refreshToken = this.jwtService.sign({ payload, expiresIn: '1D' });
 
     await this.dbClient.session.create({

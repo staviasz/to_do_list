@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Installing dependencies..."
-pnpm install
+pnpm install --force
 echo "Dependencies already installed."
 
 echo "Running migrations..."
