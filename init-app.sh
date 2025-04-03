@@ -6,7 +6,9 @@ echo "Dependencies already installed."
 
 echo "Running migrations..."
 pnpm prisma:deploy
-
+ 
 
 echo "Starting server..."
-pnpm run start:dev
+pnpm start:dev
+
+

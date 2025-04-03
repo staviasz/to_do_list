@@ -1,5 +1,5 @@
-import type { HttpResponse } from '@/types/contracts/services/httpResponse';
-import type { RequestOptions } from '@/types/contracts/services/requestOptions';
+import { HttpResponse } from "./httpResponse";
+import { RequestOptions } from "./requestOptions";
 
 export interface HttpClient {
   request: (url: string, optionss: RequestOptions) => Promise<HttpResponse>;

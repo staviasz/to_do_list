@@ -1,9 +1,13 @@
 FROM node:20-alpine
 WORKDIR /app
 
-RUN wget -O /usr/local/bin/dockerize https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz \
-  && tar -C /usr/local/bin -xzvf /usr/local/bin/dockerize \
-  && chmod +x /usr/local/bin/dockerize
+RUN wget -O dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz \
+    && tar -C /usr/local/bin -xzf dockerize.tar.gz \
+    && rm dockerize.tar.gz \
+    && chmod +x /usr/local/bin/dockerize
+
+RUN apk add --no-cache openssl
+
 
 RUN npm install -g pnpm
 

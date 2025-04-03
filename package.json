@@ -17,9 +17,12 @@
   "scripts": {
     "dev:api": "npm -w backend run start:dev",
     "dev:app": "npm -w frontend run dev",
-    "dev": "docker-compose up --build",
     "start:dev": "npm run dev:api & npm run dev:app",
-    "prisma:deploy": "npm -w backend run prisma:setup"
+    "prisma:deploy": "npm -w backend run prisma:setup",
+    "test": "npm -w backend run test & npm -w frontend run test",
+    "build": "npm -w frontend run build & npm -w backend run build",
+    "start:prod": "npm -w backend run start:prod & npm -w frontend run start",
+    "start": "docker-compose up --build"
   },
   "keywords": [],
   "author": "",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { HttpClient } from "@/types/contracts/httpClient";
 import { HttpResponse } from "@/types/contracts/httpResponse";
 import { RequestOptions } from "@/types/contracts/requestOptions";
@@ -49,7 +50,7 @@ class FetchAdapter implements HttpClient {
   private async _formatBodyResponse(response: Response) {
     try {
       return await response.json();
-    } catch (error) {
+    } catch (_) {
       return {};
     }
   }
