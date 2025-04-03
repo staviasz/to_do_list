@@ -1,4 +1,4 @@
-import Form from "react-bootstrap/esm/Form";
+import Form from "react-bootstrap/Form";
 
 interface FormGroupProps {
   label: string;

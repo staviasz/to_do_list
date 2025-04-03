@@ -8,7 +8,11 @@ interface TaskProps {
 
 export default function CardTasks({ onClick, task }: TaskProps) {
   return (
-    <Card onClick={() => onClick(task)} className="cursor-pointer">
+    <Card
+      onClick={() => onClick(task)}
+      className="cursor-pointer"
+      data-testid="card"
+    >
       <CardBody>
         <CardSubtitle>{task.dateOfCompletion}</CardSubtitle>
         <CardText>{task.description}</CardText>

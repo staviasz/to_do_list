@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 export default function Header({ onClick }: HeaderProps) {
-  const {session} =useAuth();
+  const { session } = useAuth();
 
   return (
     <header className="d-flex align-items-center justify-content-end gap-3 py-2 px-3">
@@ -19,7 +19,7 @@ export default function Header({ onClick }: HeaderProps) {
       </p>
       <Image
         src={session?.user?.id ? Avatar : AvatarAnonymous}
-        alt="avatar"
+        alt={session?.user?.id ? "Usuário logado" : "Usuário não logado"}
         width={50}
         height={50}
         className="rounded-circle"

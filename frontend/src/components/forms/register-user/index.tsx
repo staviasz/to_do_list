@@ -25,7 +25,7 @@ export default function RegisterForm({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const erros = structuredClone(fieldsForm);
+    const erros = JSON.parse(JSON.stringify(fieldsForm));
 
     if (!/^[a-zA-ZÀ-ÿ\s~-]+$/.test(formData.name)) {
       erros.name = "O nome deve conter apenas letras, espaços e hífen.";
@@ -51,7 +51,7 @@ export default function RegisterForm({
     }
 
     const response = await createUserService(formData);
-    if (response.status > 299) {
+    if (!response.ok) {
       setErrorApi(response.body.message);
       return;
     }
@@ -61,11 +61,12 @@ export default function RegisterForm({
   return (
     <BaseForm
       onSubmit={(e) => handleSubmit(e)}
-      title="Register"
+      title="Cadastro"
       onClickCancel={onClickCancel}
       onClickRedirect={onClickRedirect}
       textRedirect="Tem uma conta? Faça login"
       messageErroApi={errorApi}
+      textBtnSuccess="Cadastrar"
     >
       <FormGroup
         label="Nome"

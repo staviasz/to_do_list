@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useJWT } from "@/hooks/use-jwt";
 import { createContext, useEffect, useState } from "react";
 

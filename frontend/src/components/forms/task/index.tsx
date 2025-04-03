@@ -39,7 +39,7 @@ export default function TaskForm({ onClickCloseForm, task }: TaskFormProps) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const erros = structuredClone(fieldsForm);
+    const erros = JSON.parse(JSON.stringify(fieldsForm));
 
     const descriptionLength = formData.description?.length;
     if (descriptionLength < 3 || descriptionLength > 255) {
@@ -121,7 +121,7 @@ export default function TaskForm({ onClickCloseForm, task }: TaskFormProps) {
   };
 
   return (
-    <>
+    <div data-testid="task-form">
       <BaseForm
         title="Task"
         onSubmit={(e) => handleSubmit(e)}
@@ -172,6 +172,6 @@ export default function TaskForm({ onClickCloseForm, task }: TaskFormProps) {
           </div>
         )}
       </BaseForm>
-    </>
+    </div>
   );
 }

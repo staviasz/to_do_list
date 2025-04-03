@@ -1,10 +1,10 @@
 "use client";
 
 import ListTasks from "@/components/containers/list-tasks";
-import { SessionProvider } from "@/components/context/session-context";
 import LoginForm from "@/components/forms/login";
 import RegisterForm from "@/components/forms/register-user";
 import Header from "@/components/header";
+import { SessionProvider } from "@/context/session-context";
 import { useState } from "react";
 
 export default function HomeContainer() {

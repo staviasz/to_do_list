@@ -1,15 +1,17 @@
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 
 interface ContainerButtonsFormProps {
   textDangerBtn?: string;
   onClickDanger?: () => void;
+  onClickSuccess?: () => void;
   textSuccessBtn?: string;
 }
 
 export default function ContainerButtonsForm({
-  textDangerBtn = "Cancel",
-  textSuccessBtn = "Submit",
+  textDangerBtn = "Cancelar",
+  textSuccessBtn = "Salvar",
   onClickDanger,
+  onClickSuccess,
 }: ContainerButtonsFormProps) {
   return (
     <div className="d-flex justify-content-end">
@@ -21,7 +23,7 @@ export default function ContainerButtonsForm({
       >
         {textDangerBtn}
       </Button>
-      <Button variant="success" type="submit">
+      <Button variant="success" type="submit" onClick={onClickSuccess}>
         {textSuccessBtn}
       </Button>
     </div>

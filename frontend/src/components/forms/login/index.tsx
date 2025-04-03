@@ -22,11 +22,11 @@ export default function LoginForm({
   const [formData, setFormData] = useState(fieldsForm);
   const [errorMessages, setErrorMessages] = useState(fieldsForm);
   const [errorApi, setErrorApi] = useState("");
-  const session = useAuth();
+  const { setSession } = useAuth();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const erros = structuredClone(fieldsForm);
+    const erros = JSON.parse(JSON.stringify(fieldsForm));
 
     if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)
@@ -47,14 +47,15 @@ export default function LoginForm({
     }
 
     const response = await loginUserService(formData);
-    if (response.status > 299) {
+
+    if (!response.ok) {
       setErrorApi(response.body.message);
       return;
     }
 
     window.localStorage.setItem("token", response.body.token);
     window.localStorage.setItem("refreshToken", response.body.refreshToken);
-    session.setSession({
+    setSession({
       token: response.body.token,
       refreshToken: response.body.refreshToken,
     });
@@ -67,8 +68,9 @@ export default function LoginForm({
       onSubmit={(e) => handleSubmit(e)}
       onClickCancel={onClickCancel}
       onClickRedirect={onClickRedirect}
-      textRedirect="Criar uma conta"
+      textRedirect="Criar uma conta?"
       messageErroApi={errorApi}
+      textBtnSuccess="Entrar"
     >
       <FormGroup
         label="Email"
@@ -79,8 +81,8 @@ export default function LoginForm({
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
       />
       <FormGroup
-        label="Password"
-        placeholder="Password"
+        label="Senha"
+        placeholder="Insira a sua senha"
         type="password"
         messageError={errorMessages.password}
         value={formData.password}

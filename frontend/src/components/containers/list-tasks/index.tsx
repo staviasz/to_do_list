@@ -84,7 +84,7 @@ export default function ListTasksContainer() {
       }
     };
     getTasks();
-  }, [session]);
+  }, [option, session]);
 
   return (
     <>
